@@ -4,6 +4,13 @@ import { CircularProgress } from '@mui/material';
 import { fetchRandomDog } from '../../../queries/query';
 import { loremIpsum } from 'lorem-ipsum';
 
+import React, { useEffect, useState } from "react";
+import { getAllPerros, buscarPerro, eliminarPerro } from "./components/cons.dog";
+import FormPerritos from "./formPerritos";
+
+
+
+
 export default function Dog({ onAccept, onReject }) {
   const generateDogName = () => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';

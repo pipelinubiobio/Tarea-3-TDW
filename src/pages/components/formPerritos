@@ -1,0 +1,47 @@
+import React, { useState } from 'react';
+const { crearPerro } = require('./components/perros');
+
+const FormPerritos = (props) => {
+  const [formData, setFormData] = useState({
+    nombre:'',
+    foto_url:'',
+    descripcion:''
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await crearImplemento(formData);
+    setFormData({
+        nombre:'',
+        foto_url:'',
+        descripcion:''
+    });
+    props.onSave();
+  };
+
+  return (
+    <form className="inline-form" onSubmit={handleSubmit}>
+      <label htmlFor="nombre">nombre</label>
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        value={formData.numeroSerie}
+        onChange={handleInputChange}
+        required
+      />
+
+      <button type="submit">Guardar</button>
+    </form>
+  );
+};
+
+export default FormPerritos;
